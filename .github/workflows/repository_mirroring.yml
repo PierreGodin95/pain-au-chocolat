@@ -1,0 +1,11 @@
+name: mirroring
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+- name: Mirroring Repository
+  uses: pixta-dev/repository-mirroring-action@v1.1.1
+            
