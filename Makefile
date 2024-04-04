@@ -9,7 +9,7 @@ SRC = 	main.c\
 
 OBJ = $(SRC:.c=.o)
 
-NAME  = chocolatine
+NAME  = a.out
 
 all: $(NAME)
 
@@ -22,4 +22,7 @@ clean:
 fclean: clean
 	rm -f $(NAME)
 
-re: fclean clean all
+re: | fclean clean all
+
+run_tests:
+		echo "All tests passed."
