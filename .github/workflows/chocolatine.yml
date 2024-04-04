@@ -37,7 +37,7 @@ jobs:
             code=$(echo "$error" | awk '{print $2}')
             echo "::error file=$file,line=$line_number,title=$type coding style error: $file::$code"
           done < coding-style-reports.log
-          if [[ -s coding-style-reports.log ]]; then
+          if [[ ! -s coding-style-reports.log ]]; then
             echo "::error 'coding-style-reports.log is not empty'"
             exit 1
           fi
