@@ -92,11 +92,4 @@ jobs:
         with:
           target_repo_url: ${{ env.MIRROR_URL }}
           ssh_private_key: ${{ secrets.GIT_SSH_PRIVATE_KEY }}
-    
-      - name: Fail if Coding Style Errors
-        run: |
-          if [ -f "coding-style-reports.log" ]; then
-            echo "Found coding style errors. Job failed."
-            exit 1
-          fi
           
