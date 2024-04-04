@@ -77,7 +77,7 @@ jobs:
         with:
           fetch-depth: 0
       - name: Make
-        run: make tests_run
+        run: make run_tests
 
   mirror:
     runs-on: ubuntu-latest
