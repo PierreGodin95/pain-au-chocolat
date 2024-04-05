@@ -24,5 +24,5 @@ fclean: clean
 
 re: | fclean clean all
 
-run_tests:
+tests_run:
 		echo "All tests passed."
