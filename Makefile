@@ -6,6 +6,7 @@
 ##
 
 SRC = 	main.c\
+		unit_tests.c\
 
 OBJ = $(SRC:.c=.o)
 
