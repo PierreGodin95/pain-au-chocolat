@@ -1,4 +1,4 @@
-int main(void)
+int test(void)
 {
     return 42;
 }
