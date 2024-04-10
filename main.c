@@ -1,5 +1,5 @@
 int test(void)
 {
-    int a = 121345678978;
+    int a = 8;
     return 42;
 }
