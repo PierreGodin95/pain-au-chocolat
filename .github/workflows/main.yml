@@ -10,8 +10,7 @@ on:
 
 jobs:
   check_memory_leaks:
-    runs-on: ubuntu-latest
-    needs: run_tests
+    runs-on: windows-latest
     container:
       image: epitechcontent/epitest-docker
     steps:
