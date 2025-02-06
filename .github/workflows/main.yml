@@ -27,6 +27,7 @@ jobs:
         run: sudo apt install valgrind -y
       - name: run code w/ valgrind
         run: valgrind ./program > valgrind_output.log
+      -name: run the valgrind 
         run: |
           if grep -q -F "ERROR SUMMARY: 0 errors from 0 contexts" valgrind_output.log; then
             echo "No valgrind error"
