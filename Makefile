@@ -1,28 +1,26 @@
 ##
-## EPITECH PROJECT, 2023
-## makefile
+## EPITECH PROJECT, 2024
+## Makefile
 ## File description:
-## makefile
+## makefile for my_ls
 ##
 
-SRC = 	main.c\
+SRC		=	main.c \
 
-OBJ = $(SRC:.c=.o)
+OBJ		=	$(SRC:.c=.o)
 
-NAME  = a.out
+NAME 	=	program
 
-all: $(NAME)
+all:	$(NAME)
 
-$(NAME):
-	$(CC) -g3 -o $(NAME) $(SRC)
+$(NAME):	$(OBJ)
+	gcc $(SRC) -o $(NAME)
+	make clean
 
 clean:
-	rm -f ./*.o
+	rm -f $(OBJ)
 
 fclean: clean
 	rm -f $(NAME)
 
-re: | fclean clean all
-
-tests_run:
-		echo "All tests passed."
+re:	fclean all
