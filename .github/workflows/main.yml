@@ -2,39 +2,33 @@ name: Memory Leak Check
 
 on:
   push:
-    branches-ignore:
-      - 'ga-ignore-*'
   pull_request:
-    branches-ignore:
-      - 'ga-ignore-*'
 
 jobs:
-  check_memory_leaks:
+  valgrind:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-      - name: Make
-        timeout-minutes: 2
+
+      - name: Install dependencies
+        run: sudo apt-get update && sudo apt-get install -y build-essential valgrind
+
+      - name: Compile repository
         run: make
-      - name: List files
-        run: ls -l
-      - name: Ensure Executable Permissions
-        run: chmod +x ./program
-      - name: install valgrind
-        run: sudo apt install valgrind -y
-      - name: run code w/ valgrind
-        run: valgrind ./program > valgrind_output.log
-      -name: run the valgrind 
+
+      - name: Run code w/ valgrind
         run: |
-          if grep -q -F "ERROR SUMMARY: 0 errors from 0 contexts" valgrind_output.log; then
-            echo "No valgrind error"
+          valgrind ./program > valgrind_output.log
+
+      - name: Check valgrind
+        run: |
+          if grep -q -F "ERROR SUMMARY: 0 errors from 0 contexts" "valgrind_output.log"; then
+            echo 'No valgrind error'
           else
-            echo "valgrind error"
+            echo 'Valgrind error'
             exit 1
           fi
 
-      - name:
+      - name: Clean repository
         run: make clean
