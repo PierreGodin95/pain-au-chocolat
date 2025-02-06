@@ -1,9 +1,6 @@
 name: Memory Leak Check
 
 on:
-  push:
-    branches-ignore:
-      - 'ga-ignore-*'
   pull_request:
     branches-ignore:
       - 'ga-ignore-*'
@@ -11,6 +8,7 @@ on:
 jobs:
   check_memory_leaks:
     runs-on: ubuntu-latest
+    needs: run_tests
     container:
       image: epitechcontent/epitest-docker
     steps:
@@ -21,6 +19,10 @@ jobs:
       - name: Make
         timeout-minutes: 2
         run: make
+      - name: List files
+        run: ls -l
+      - name: Ensure Executable Permissions
+        run: chmod +x ./program.exe
       - name: Run Valgrind
         run: |
           valgrind --leak-check=full --error-exitcode=1 ./program.exe | tee valgrind_output.log
